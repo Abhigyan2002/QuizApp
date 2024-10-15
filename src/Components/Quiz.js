@@ -1,11 +1,14 @@
 import React from "react";
 
+
 function Quiz(props) {
-    
+    const handleReset=()=>{
+      props.handleReset();
+    }
 
     const handleNext=(s)=>{
         console.log(s);
-        props.setState(true);
+        props.setButtonState(true);
         if (s===props.questions.Correct) {
             console.log("Correct");
             props.setScore(props.score+1);
@@ -36,7 +39,7 @@ function Quiz(props) {
               className="btn btn-light m-3"
               onClick={()=>handleNext(props.questions.Options.first)}
               style={{fontSize:'20px'}}
-              disabled={props.state}
+              disabled={props.buttonState}
             >
               A. <span style={{fontWeight:'bold'}}>{props.questions.Options.first}</span>
             </button>
@@ -47,7 +50,7 @@ function Quiz(props) {
               className="btn btn-light m-3"
               onClick={()=>handleNext(props.questions.Options.second)}
               style={{fontSize:'20px'}}
-              disabled={props.state}
+              disabled={props.buttonState}
             >
               B. <span style={{fontWeight:'bold'}}>{props.questions.Options.second}</span>
             </button>
@@ -60,7 +63,7 @@ function Quiz(props) {
               className="btn btn-light m-3"
               onClick={()=>handleNext(props.questions.Options.third)}
               style={{fontSize:'20px'}}
-              disabled={props.state}
+              disabled={props.buttonState}
             >
               C. <span style={{fontWeight:'bold'}}>{props.questions.Options.third}</span>
             </button>
@@ -71,7 +74,7 @@ function Quiz(props) {
               className="btn btn-light m-3"
               onClick={()=>handleNext(props.questions.Options.fourth)}
               style={{fontSize:'20px'}}
-              disabled={props.state}
+              disabled={props.buttonState}
             >
               D. <span style={{fontWeight:'bold'}}>{props.questions.Options.fourth}</span>
             </button>
@@ -79,8 +82,8 @@ function Quiz(props) {
         </div>
       </div>
       <div className="container d-flex justify-content-center">
-      <button type="button" className="btn btn-dark">
-        <a className="nav-link" href="/">Restart</a>
+      <button type="button" className="btn btn-dark" onClick={handleReset}>
+        Restart
         </button>
         </div>
     </div>

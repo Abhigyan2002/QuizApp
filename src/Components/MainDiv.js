@@ -4,6 +4,7 @@ import Alerts from "./Alerts";
 
 
 
+
 function MainDiv(props) {
     const questions = [
         {
@@ -288,7 +289,7 @@ function MainDiv(props) {
   const [alert,setAlert]=useState({show:false,type:''})
   const [qn,setQn]=useState(Math.floor(Math.random() * 15));
   const [visited,setVisited]=useState([qn]);
-  const [state,setState]=useState(false);
+  const [buttonState,setButtonState]=useState(false);
 
   
   const next = () => {
@@ -304,9 +305,18 @@ function MainDiv(props) {
         setVisited([...visited,n]);
         setQn(n);
       setCurr(currQues + 1);
-      setState(false);
+      setButtonState(false);
     }
   };
+
+  const handleReset=()=>{
+    setVisited([]);
+    setCurr(0);
+    setFinished(false);
+    setQn(Math.floor(Math.random() * 15));
+    setButtonState(false);
+    props.setScore(0);
+  }
 
   const showAlert=(type)=>{
     setAlert({show:true,type:type});
@@ -319,11 +329,11 @@ function MainDiv(props) {
     <>
       {finished ? (
         
-        <div className="container">
+        <div className="container text-center">
         <h3 className="my-5">Quiz Over! Your score: {props.score}/10</h3>
         <div className="d-flex justify-content-center">
-      <button type="button" className="btn btn-dark">
-        <a className="nav-link" href="/">Restart</a>
+      <button type="button" className="btn btn-dark" onClick={handleReset}>
+        Restart
         </button>
         </div>
         </div>
@@ -335,9 +345,10 @@ function MainDiv(props) {
           setScore={props.setScore}
           next={next}
           showAlert={showAlert}
-          state={state}
-          setState={setState}
+          buttonState={buttonState}
+          setButtonState={setButtonState}
           currQues={currQues}
+          handleReset={handleReset}
         />
         
       )}
