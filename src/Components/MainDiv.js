@@ -321,6 +321,11 @@ function MainDiv(props) {
         
         <div className="container">
         <h3 className="my-5">Quiz Over! Your score: {props.score}/10</h3>
+        <div className="d-flex justify-content-center">
+      <button type="button" className="btn btn-dark">
+        <a className="nav-link" href="/">Restart</a>
+        </button>
+        </div>
         </div>
        
       ) : (

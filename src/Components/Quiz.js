@@ -78,6 +78,11 @@ function Quiz(props) {
           </div>
         </div>
       </div>
+      <div className="container d-flex justify-content-center">
+      <button type="button" className="btn btn-dark">
+        <a className="nav-link" href="/">Restart</a>
+        </button>
+        </div>
     </div>
   );
 }
